@@ -25,4 +25,13 @@ describe UserRepository do
     expect(users[1].user_name).to eq("user2")
     expect(users[1].password).to eq("password2")
   end
+  it 'Should find one specific user' do
+    repo = UserRepository.new
+    user = repo.find(1)
+    expect(user.id).to eq(1)
+    expect(user.email).to eq("email1@gmail.com")
+    expect(user.user_name).to eq("user1")
+    expect(user.password).to eq("password1")
+
+  end
 end
