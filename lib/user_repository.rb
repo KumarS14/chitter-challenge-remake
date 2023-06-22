@@ -18,4 +18,17 @@ class UserRepository
       end
        return users
     end
+   def find(id)
+    sql = 'SELECT * FROM users WHERE id = $1;'
+    params = DatabaseConnection.exec_params(sql,[id])
+    result_set = params[0]
+    user = User.new
+    user.id = result_set['id'].to_i
+    user.email = result_set['email']
+    user.user_name = result_set['user_name']
+    user.password = result_set['password']
+    return user
+
+   end
+   
 end
