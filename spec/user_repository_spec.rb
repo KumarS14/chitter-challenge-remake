@@ -15,5 +15,14 @@ describe UserRepository do
     repo = UserRepository.new
     users = repo.all
     expect(users.length).to eq(4)
+    expect(users[0].id).to eq(1)
+    expect(users[0].email).to eq("email1@gmail.com")
+    expect(users[0].user_name).to eq("user1")
+    expect(users[0].password).to eq("password1")
+
+    expect(users[1].id).to eq(2)
+    expect(users[1].email).to eq("email2@gmail.com")
+    expect(users[1].user_name).to eq("user2")
+    expect(users[1].password).to eq("password2")
   end
 end
