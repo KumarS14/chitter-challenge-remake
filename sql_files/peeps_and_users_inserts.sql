@@ -1,4 +1,4 @@
-TRUNCATE TABLE users, peeps CASCADE;
+TRUNCATE TABLE peeps, users RESTART IDENTITY CASCADE;
 
 INSERT INTO users (email, user_name, password) VALUES ('email1@gmail.com', 'user1','password1');
 INSERT INTO users (email, user_name, password) VALUES ('email2@gmail.com', 'user2', 'password2');
