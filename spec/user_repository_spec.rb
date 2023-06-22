@@ -34,4 +34,16 @@ describe UserRepository do
     expect(user.password).to eq("password1")
 
   end
+  it 'should create a new user' do
+    repo = UserRepository.new
+    user = User.new
+    user.email = "test@example.com"
+    user.user_name = "test user name"
+    user.password = "test password"
+    new_user = repo.create(user)
+    expect(new_user.email).to eq("test@example.com")
+    expect(new_user.user_name).to eq("test user name")
+    expect(new_user.password).to eq("test password")
+
+  end
 end
