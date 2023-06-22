@@ -25,4 +25,30 @@ describe PeepRepository do
     expect(peeps[1].time_posted).to eq("2023-06-22 13:01:05.452201")
     expect(peeps[1].user_id).to eq("2")
   end
+  it 'should return all peeps in the test database' do
+    repo = PeepRepository.new
+    peep = repo.find(1)
+    expect(peep.id).to eq(1)
+    expect(peep.content).to eq("content1")
+    expect(peep.time_posted).to eq("2023-06-22 13:01:05.449966")
+    expect(peep.user_id).to eq("1")
+  end
+  xit 'Should create a new peep' do
+    repo = PeepRepository.new
+    peep = Peep.new
+    peep.content = "test content"
+    peep.time_posted = Time.now
+    peep.user_id = "2"
+    repo.create(peep)
+    
+    expect(peep.content).to eq("test content")
+    
+    # Truncate the expected and actual timestamps
+    expected_time_truncated = Time.now.round(0)
+    actual_time_truncated = peep.time_posted.round(0)
+    
+    expect(expected_time_truncated).to eq(actual_time_truncated)
+    expect(peep.user_id).to eq("2")
+  end
+  
 end
