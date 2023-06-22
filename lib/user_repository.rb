@@ -12,7 +12,7 @@ class UserRepository
         user = User.new
         user.id = row['id'].to_i
         user.email = row['email']
-        user.username = row['user_name']
+        user.user_name = row['user_name']
         user.password = row['password']
         users << user
       end
