@@ -13,18 +13,22 @@ class Application < Sinatra::Base
     also_reload 'lib/peep_repository'
     also_reload 'lib/user_repository'
   end
+
   get '/signup' do
-    return erb(:signup_page)
+    erb :signup_page
   end
+
   post '/post-signup' do
     def invalid_parameters?
       return true if params[:email].nil? || params[:password].nil? || params[:user_name] == nil?
       return true if params[:email] == "" || params[:password] == "" || params[:user_name] == ""
     end
+
     if invalid_parameters?
-        status 503
-        return status
-     end
+      status 404
+      return 'Signup unsuccessful'
+    end
+
     email = params[:email]
     user_name = params[:user_name]
     password = params[:password]
@@ -36,7 +40,4 @@ class Application < Sinatra::Base
     repo.create(user)
     return 'Signup successful'
   end
-  
-
-
 end
