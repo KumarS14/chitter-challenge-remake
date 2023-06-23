@@ -49,4 +49,9 @@ class Application < Sinatra::Base
     repo.create(user)
     return 'Signup successful'
   end
+  get '/peeps' do
+    repo = PeepRepository.new
+    @peeps = repo.all
+    erb :peeps
+  end 
 end
