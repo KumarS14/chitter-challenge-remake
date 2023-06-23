@@ -13,18 +13,22 @@ describe Application do
         it 'should allow me to show the signup page' do
             response = get('/signup')
             expect(response.status).to eq(200)
-            expect(response.body).to include('<form action="post-signup" type="POST">')
+            expect(response.body).to include('<form action="/post-signup" type="POST">')
 
         end
     end
     context "POST /" do
         it 'Should tell the user that they have not entered in all boxes' do
             response = post("/post-signup")
-            expect(response.status).to eq(503)
+            expect(response.status).to eq(404)
             expect(response.body).to eq('Signup unsuccessful')
-
-
         end    
+        it 'should tell me that the signup was successful' do
+            response = post("/post-signup", email: 'signup@example.com', user_name: 'testuser1', password: 'testpassword')
+            expect(response.status).to eq(200)
+            expect(response.body).to eq("Signup successful")
+
+        end
 
 
     end
