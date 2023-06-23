@@ -1,4 +1,4 @@
-require 'peep.rb'
+require_relative 'peep.rb'
 class PeepRepository
     def all
         sql = 'SELECT id, content, time_posted, user_id FROM peeps;'
