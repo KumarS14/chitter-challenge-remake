@@ -16,6 +16,17 @@ class Application < Sinatra::Base
   get '/signup' do
     return erb(:signup_page)
   end
+  post '/post-signup' do
+    def invalid_credentials?
+      return true if params[:email].nil? || params[:password].nil? || params[:user_name] == nil?
+    end
+
+    if invalid_credentials?
+      status 503
+      return 'Signup unsuccessful'
+    end
+  end
+  
 
 
 end
