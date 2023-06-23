@@ -13,7 +13,7 @@ describe Application do
         it 'should allow me to show the signup page' do
             response = get('/signup')
             expect(response.status).to eq(200)
-            expect(response.body).to include('<form action="/post-signup" type="POST">')
+            expect(response.body).to include('<form action="/post-signup" method="POST">')
 
         end
     end
