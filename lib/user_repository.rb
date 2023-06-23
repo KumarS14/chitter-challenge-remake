@@ -1,4 +1,4 @@
-require 'user.rb'
+require_relative 'user.rb'
 class UserRepository
 
     # Selecting all records
