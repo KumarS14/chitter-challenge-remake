@@ -24,9 +24,18 @@ class Application < Sinatra::Base
       return true if params[:email] == "" || params[:password] == "" || params[:user_name] == ""
     end
 
+    def invalid_password?
+        return true if params[:password].length < 8
+    end
+
     if invalid_parameters?
       status 404
       return 'Signup unsuccessful'
+    end
+
+    if invalid_password?
+        status 404
+        return 'Invalid password please enter one 8 characters long'
     end
 
     email = params[:email]
