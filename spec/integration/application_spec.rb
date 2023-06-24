@@ -27,8 +27,6 @@ describe Application do
             response = get('/login-page')
             expect(response.status).to eq(200)
             expect(response.body).to include('<form action="/login-page" method="POST" name="login')
-
-
         end
     end
     context "POST /" do
@@ -43,7 +41,10 @@ describe Application do
             expect(response.body).to eq("Signup successful")
 
         end
-
+        it 'should allow the user to login and re-direct to peeps page' do
+            response = post("/login", email: "email3@gmail.com", password: "password3")
+            expect(response.body).to eq(200)
+        end
 
     end
 end
