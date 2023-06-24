@@ -48,7 +48,13 @@ class Application < Sinatra::Base
     user.password = password
     user.user_name = user_name
     repo.create(user)
-    return 'Signup successful'
+   # return 'Signup successful'
+    redirect '/login-page'
+  end
+  get '/login-page' do
+
+
+    return 'redirect succesful'
   end
   get '/peeps' do
     repo1 = PeepRepository.new
