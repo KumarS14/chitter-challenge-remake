@@ -55,10 +55,9 @@ class Application < Sinatra::Base
     redirect '/login-page'
   end
   get '/login-page' do
-
-
-    return 'redirect succesful'
+    return erb(:login_page)
   end
+  
   get '/peeps' do
     repo1 = PeepRepository.new
     repo2 = UserRepository.new
