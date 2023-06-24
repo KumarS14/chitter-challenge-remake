@@ -57,6 +57,19 @@ class Application < Sinatra::Base
   get '/login-page' do
     return erb(:login_page)
   end
+  post '/login' do
+    email = params[:email]
+    password = params[:password]
+    repo = UserRepository.new
+    user = repo.find_by_email(email)
+    if user && BCrypt::Password.new(user.password) == password
+      session[:user_id] = user.id
+      redirect '/peeps'
+    else
+      redirect '/login-page'
+    end
+  end
+  
   
   get '/peeps' do
     repo1 = PeepRepository.new
