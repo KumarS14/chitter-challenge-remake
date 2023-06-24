@@ -1,4 +1,5 @@
 require_relative 'user.rb'
+require 'bcrypt'
 class UserRepository
 
     # Selecting all records
@@ -47,4 +48,21 @@ class UserRepository
     user.password = result['password']
     return user
   end
+  def update_password(user_id, password)
+    hashed_password = BCrypt::Password.create(password)
+    sql = 'UPDATE users SET password = $1 WHERE id = $2;'
+    params = [hashed_password, user_id]
+    DatabaseConnection.exec_params(sql, params)
+  end
+
+  def update_all_passwords
+    users = all
+    users.each do |user|
+      update_password(user.id, user.password)
+    end
+  end
+
+
+
+
 end
