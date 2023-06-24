@@ -23,6 +23,13 @@ describe Application do
 
 
         end
+        it 'should show the user a login page to enter the correct details' do
+            response = get('/login-page')
+            expect(response.status).to eq(200)
+            expect(response.body).to include('<form action="/login-page" method="POST" name="login')
+
+
+        end
     end
     context "POST /" do
         it 'Should tell the user that they have not entered in all boxes' do
