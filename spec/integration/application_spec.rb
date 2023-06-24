@@ -18,7 +18,8 @@ describe Application do
         end
         it 'should show me the peeps in reverse chronological order' do
             response = get('/peeps')
-            response.status.to eq(200)
+            expect(response.status).to eq(200)
+            expect(response.body).to include('content2')
 
 
         end
