@@ -18,12 +18,12 @@ describe PeepRepository do
     expect(peeps[0].id).to eq(1)
     expect(peeps[0].content).to eq("content1")
     expect(peeps[0].time_posted).to eq("2023-06-22 13:01:05.449966")
-    expect(peeps[0].user_id).to eq("1")
+    expect(peeps[0].user_id).to eq(1)
 
     expect(peeps[1].id).to eq(2)
     expect(peeps[1].content).to eq("content2")
     expect(peeps[1].time_posted).to eq("2023-06-22 13:01:05.452201")
-    expect(peeps[1].user_id).to eq("2")
+    expect(peeps[1].user_id).to eq(2)
   end
   it 'should return all peeps in the test database' do
     repo = PeepRepository.new
