@@ -4,10 +4,14 @@
 <body>
   <h1>Peeps</h1>
   <br>
-   <% @peeps.each do |peep| %> 
-        <p><%=peep%></p>
+  <% (@peeps.length - 1).downto(0) do |peep| %>
+  <br>
+  <p><%= @names[peep] %></p>
+  <p><%= @peeps[peep].content %></p>
+  <% timestamp = @peeps[peep].time_posted.split('.').first %>
+  <p>time Posted: <%= timestamp %></p>
+  <% end %>
 
-   <%end%>
  
 </body>
 </html>
