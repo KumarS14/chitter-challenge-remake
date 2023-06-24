@@ -60,6 +60,7 @@ class Application < Sinatra::Base
   post '/login' do
     email = params[:email]
     password = params[:password]
+
     repo = UserRepository.new
     user = repo.find_by_email(email)
     if user && BCrypt::Password.new(user.password) == password
