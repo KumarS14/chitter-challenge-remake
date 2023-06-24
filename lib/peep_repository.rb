@@ -9,7 +9,7 @@ class PeepRepository
             peep.id = row['id'].to_i
             peep.content = row['content']
             peep.time_posted = row['time_posted']
-            peep.user_id = row['user_id']
+            peep.user_id = row['user_id'].to_i
             peeps << peep
         end
         return peeps
