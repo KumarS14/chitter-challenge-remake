@@ -18,3 +18,5 @@ gem "pg", "~> 1.5"
 gem "sinatra", "~> 3.0"
 gem "sinatra-contrib", "~> 3.0"
 gem "webrick", "~> 1.8"
+gem 'bcrypt-ruby', '~> 3.1', require: 'bcrypt'
+
