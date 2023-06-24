@@ -50,8 +50,16 @@ class Application < Sinatra::Base
     return 'Signup successful'
   end
   get '/peeps' do
-    repo = PeepRepository.new
-    @peeps = repo.all
+    repo1 = PeepRepository.new
+    repo2 = UserRepository.new
+    
+    @peeps = repo1.all
+    @names = Array.new
+    @peeps.length.times do |i|
+       users = repo2.find(@peeps[i].user_id)
+        @names << users.user_name
+
+    end
     erb :peeps
   end 
 end
