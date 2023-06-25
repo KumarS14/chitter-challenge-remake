@@ -60,16 +60,20 @@ class Application < Sinatra::Base
   post '/login' do
     email = params[:email]
     password = params[:password]
-
+   begin
     repo = UserRepository.new
-    user = repo.find_by_email(email)
-    if user && BCrypt::Password.new(user.password) == password
-      session[:user_id] = user.id
-      redirect '/peeps'
-    else
-      redirect '/login-page'
+      user = repo.find_by_email(email)
+      if BCrypt::Password.new(user.password) == password
+        session[:user_id] = user.id
+        redirect '/peeps'
+      end
+    rescue => e
+      status = 500
+      return 'invalid login credentials please try again' 
     end
+  
   end
+  
   
   
   get '/peeps' do
