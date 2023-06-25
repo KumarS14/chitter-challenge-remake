@@ -22,7 +22,7 @@ class PeepRepository
             peep.id = result['id'].to_i
             peep.content = result['content']
             peep.time_posted = result['time_posted']
-            peep.user_id = result['user_id']
+            peep.user_id = result['user_id'].to_i
         return peep
 
     end
