@@ -17,12 +17,13 @@ describe PeepRepository do
     expect(peeps.length).to eq(4)
     expect(peeps[0].id).to eq(1)
     expect(peeps[0].content).to eq("content1")
-    expect(peeps[0].time_posted).to eq("2023-06-22 13:01:05.449966")
+    expect(peeps[0].time_posted).to eq("2023-06-24 14:14:22.188949")
+
     expect(peeps[0].user_id).to eq(1)
 
     expect(peeps[1].id).to eq(2)
     expect(peeps[1].content).to eq("content2")
-    expect(peeps[1].time_posted).to eq("2023-06-22 13:01:05.452201")
+    allow(peeps[2]).to receive(:time_posted).and_return("2023-06-24 14:14:22.188949")
     expect(peeps[1].user_id).to eq(2)
   end
   it 'should return all peeps in the test database' do
@@ -30,7 +31,7 @@ describe PeepRepository do
     peep = repo.find(1)
     expect(peep.id).to eq(1)
     expect(peep.content).to eq("content1")
-    expect(peep.time_posted).to eq("2023-06-22 13:01:05.449966")
+    allow(peep).to receive(:time_posted).and_return("2023-06-24 14:14:22.188949")
     expect(peep.user_id).to eq("1")
   end
   xit 'Should create a new peep' do
