@@ -18,12 +18,12 @@ describe UserRepository do
     expect(users[0].id).to eq(1)
     expect(users[0].email).to eq("email1@gmail.com")
     expect(users[0].user_name).to eq("user1")
-    expect(users[0].password).to eq("password1")
-
+    expect(BCrypt::Password.new(users[0].password)).to eq("password1")
     expect(users[1].id).to eq(2)
     expect(users[1].email).to eq("email2@gmail.com")
     expect(users[1].user_name).to eq("user2")
-    expect(users[1].password).to eq("password2")
+    expect(BCrypt::Password.new(users[1].password)).to eq("password2")
+    
   end
   it 'Should find one specific user' do
     repo = UserRepository.new
@@ -31,7 +31,7 @@ describe UserRepository do
     expect(user.id).to eq(1)
     expect(user.email).to eq("email1@gmail.com")
     expect(user.user_name).to eq("user1")
-    expect(user.password).to eq("password1")
+    expect(BCrypt::Password.new(user.password)).to eq("password1")
 
   end
   xit 'should create a new user' do
