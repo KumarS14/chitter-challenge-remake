@@ -64,8 +64,9 @@ class Application < Sinatra::Base
     repo = UserRepository.new
       user = repo.find_by_email(email)
       if BCrypt::Password.new(user.password) == password
-        session[:user_id] = user.id
-        redirect '/peeps'
+         session[:user_id] = user.id
+        puts "Session User ID: #{session[:user_id]}" # Add this line for debugging
+        redirect '/make-peep'
       end
     rescue => e
       status = 500
@@ -73,6 +74,25 @@ class Application < Sinatra::Base
     end
   
   end
+  get '/make-peep' do
+    return erb(:make_peep)
+
+  end
+  post '/post-peep' do
+    content = params[:content]
+    repo = PeepRepository.new
+    peep = Peep.new
+    peep.content = content
+    peep.time_posted = Time.now
+    puts "Session User ID in post-peep route: #{session[:user_id]}" # Add this line for debugging
+    peep.user_id = session[:user_id]
+    repo.create(peep)
+  
+    puts "Peep ID after creation: #{peep.id}" # Add this line for debugging
+    puts "Peep User ID after creation: #{peep.user_id}" # Add this line for debugging
+    return session[:user_id]
+  end
+  
   
   
   
